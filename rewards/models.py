@@ -20,15 +20,17 @@ class ScheduleReward(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.IntegerField()
-    executed_at = models.DateTimeField(auto_now_add=True)
+    executed_at = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.user.username} - {self.amount} coins"
+        return (
+            f"{self.user.username} - {self.amount} coins on {self.executed_at}"
+        )
 
 
 class RewardLog(models.Model):
     """
-    Model representing a daily reward for a user.
+    Model representing a log reward for a user.
     """
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -36,4 +38,4 @@ class RewardLog(models.Model):
     given_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.amount} coins"
+        return f"{self.user.username} - {self.amount} coins on {self.given_at}"
