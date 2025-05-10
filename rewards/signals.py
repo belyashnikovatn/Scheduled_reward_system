@@ -12,5 +12,5 @@ def schedule_reward_created(sender, instance, created, **kwargs):
     """
     if created:
         execute_schedule_reward.apply_async(
-            (instance.id,), eta=instance.executed_at
+            (instance.id,), eta=instance.execute_at
         )

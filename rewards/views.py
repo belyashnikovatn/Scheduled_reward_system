@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rewards.serializers import ScheduleRewardSerializer
 from rewards.models import ScheduleReward
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 
 
 class ProfileView(APIView):
@@ -40,3 +40,18 @@ class ScheduleRewardView(CreateAPIView):
         Save the new scheduled reward instance.
         """
         serializer.save(user=self.request.user)
+
+
+class ScheduledRewardListView(ListAPIView):
+    """
+    View to list all scheduled rewards for the authenticated user.
+    """
+
+    serializer_class = ScheduleRewardSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Return the scheduled rewards for the authenticated user.
+        """
+        return ScheduleReward.objects.filter(user=self.request.user)

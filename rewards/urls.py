@@ -4,7 +4,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from rewards.views import ProfileView, ScheduleRewardView
+from rewards.views import (
+    ProfileView,
+    ScheduleRewardView,
+    ScheduledRewardListView,
+)
 
 urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
@@ -13,5 +17,10 @@ urlpatterns = [
     path("profile/", ProfileView.as_view(), name="profile"),
     path(
         "rewards/request/", ScheduleRewardView.as_view(), name="reward_request"
+    ),
+    path(
+        "rewards/",
+        ScheduledRewardListView.as_view(),
+        name="rewards",
     ),
 ]

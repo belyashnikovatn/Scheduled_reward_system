@@ -20,11 +20,11 @@ class ScheduleReward(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.IntegerField()
-    executed_at = models.DateTimeField()
+    execute_at = models.DateTimeField()
 
     def __str__(self):
         return (
-            f"{self.user.username} - {self.amount} coins on {self.executed_at}"
+            f"{self.user.username} - {self.amount} coins on {self.execute_at}"
         )
 
 

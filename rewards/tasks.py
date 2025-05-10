@@ -14,9 +14,9 @@ def execute_schedule_reward(reward_id):
     except ScheduleReward.DoesNotExist:
         return f"Reward with ID {reward_id} does not exist."
 
-    if reward.executed_at > timezone.now():
+    if reward.execute_at > timezone.now():
         execute_schedule_reward.apply_async(
-            (reward_id,), eta=reward.executed_at
+            (reward_id,), eta=reward.execute_at
         )
         return f"Reward with ID {reward_id} is rescheduled"
 

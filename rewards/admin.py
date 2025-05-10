@@ -46,35 +46,35 @@ class CustomUserAdmin(UserAdmin):
 
 
 class ScheduleRewardAdmin(admin.ModelAdmin):
-    list_display = ("user", "amount", "formatted_executed_at", "status")
-    list_filter = ("executed_at",)
+    list_display = ("user", "amount", "formatted_execute_at", "status")
+    list_filter = ("execute_at",)
     search_fields = ("user__username", "user__email")
-    date_hierarchy = "executed_at"
+    date_hierarchy = "execute_at"
     readonly_fields = ("status",)
 
-    def formatted_executed_at(self, obj):
-        if obj.executed_at:
-            return obj.executed_at.strftime("%Y-%m-%d %H:%M")
+    def formatted_execute_at(self, obj):
+        if obj.execute_at:
+            return obj.execute_at.strftime("%Y-%m-%d %H:%M")
         return "Not scheduled"
 
-    formatted_executed_at.short_description = "Executed At"
+    formatted_execute_at.short_description = "Executed At"
 
     def status(self, obj):
         from django.utils.timezone import now
 
-        if obj.executed_at is None:
+        if obj.execute_at is None:
             return format_html(
                 '<span style="color: gray;">Not scheduled</span>'
             )
-        if obj.executed_at <= now():
+        if obj.execute_at <= now():
             return format_html('<span style="color: green;">Completed</span>')
         return format_html('<span style="color: orange;">Pending</span>')
 
     status.short_description = "Status"
 
     def save_model(self, request, obj, form, change):
-        if not obj.executed_at:
-            obj.executed_at = None
+        if not obj.execute_at:
+            obj.execute_at = None
         super().save_model(request, obj, form, change)
 
 
