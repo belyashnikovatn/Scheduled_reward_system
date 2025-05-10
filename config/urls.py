@@ -21,5 +21,5 @@ from rewards import urls as rewards_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("rewards/", include(rewards_urls)),
+    path("api/", include(rewards_urls)),
 ]
