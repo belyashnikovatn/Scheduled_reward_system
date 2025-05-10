@@ -131,3 +131,6 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
+
+# Celery settings
+CELERY_BROKER_URL = "redis://redis:6379/0"  # Redis as the broker
