@@ -138,3 +138,16 @@ REST_FRAMEWORK = {
 
 # Celery settings
 CELERY_BROKER_URL = "redis://redis:6379/0"  # Redis as the broker
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Формат: Bearer <access_token>",
+        },
+    },
+    "USE_SESSION_AUTH": False,
+}
