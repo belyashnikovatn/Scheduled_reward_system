@@ -69,4 +69,3 @@ class Command(BaseCommand):
                         f'User {user_data["username"]} already exists'
                     )
                 )
-        self.stdout.write(self.style.SUCCESS("All users created successfully"))
